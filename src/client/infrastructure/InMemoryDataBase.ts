@@ -23,4 +23,8 @@ export class InMemoryDataBase implements Database {
         InMemoryDataBase.clients.push(client);
         return client;
     }
+
+    clear(): void {
+        InMemoryDataBase.clients = [];
+    }
 }

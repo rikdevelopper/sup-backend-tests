@@ -24,4 +24,8 @@ export class TestInMemoryDatabase implements Database {
         return client;
     }
 
+    clear(): void {
+        TestInMemoryDatabase.clients = [];
+    }
+
 }

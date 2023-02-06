@@ -2,14 +2,16 @@ import {assert} from "chai";
 import {ClientResponse} from "../../../../src/client/use-case/ClientResponse";
 import {TestClientUseCaseFactory} from "../../TestClientUseCaseFactory";
 import {CreateClientRequest} from "../../../../src/client/use-case/create-client/CreateClientRequest";
+import {TestConf} from "../../../conf/TestConf";
 
 const VALID_FIRST_NAME = 'FIRST NAME';
 const VALID_LAST_NAME = 'LAST NAME';
 const VALID_EMAIL = 'supinfo@supinfo.com';
-const ANOTHER_VALID_EMAIL = 'supinfo2@supinfo.com';
 const createClientUseCase = TestClientUseCaseFactory.makeCreateClientUseCase();
 
 describe('User first name tests', () => {
+    before(() => TestConf.database.clear());
+    afterEach(() => TestConf.database.clear());
     it('should throw error on create user with empty first name', () => {
         assert.throw(() => createClientUseCase.createClient({
             firstName: '',
@@ -34,6 +36,8 @@ describe('User first name tests', () => {
 });
 
 describe('User last name tests', () => {
+    before(() => TestConf.database.clear());
+    afterEach(() => TestConf.database.clear());
     it('should throw error on create user with empty last name', () => {
         assert.throw(() => createClientUseCase.createClient({
                 firstName: VALID_FIRST_NAME,
@@ -59,6 +63,8 @@ describe('User last name tests', () => {
 });
 
 describe('User email tests', () => {
+    before(() => TestConf.database.clear());
+    afterEach(() => TestConf.database.clear());
     it('should throw error on create user with empty email.', () => {
         assert.throw(() => createClientUseCase.createClient({
                 firstName: VALID_FIRST_NAME,
@@ -103,7 +109,7 @@ describe('User email tests', () => {
         const request: CreateClientRequest = {
             firstName: VALID_FIRST_NAME,
             lastName: VALID_LAST_NAME,
-            email: ANOTHER_VALID_EMAIL
+            email: VALID_EMAIL
         };
         createClientUseCase.createClient(request);
         assert.throw(() => createClientUseCase.createClient(request));

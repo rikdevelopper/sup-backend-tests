@@ -6,4 +6,6 @@ export interface Database {
     findClientById(id: number): Client | undefined;
 
     findAllClients(): Client[];
+
+    clear(): void;
 }
