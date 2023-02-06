@@ -1,23 +1,25 @@
-import {assert} from "chai";
+import {assert, expect} from "chai";
 import {ClientResponse} from "../../../../src/client/use-case/ClientResponse";
-import {TestClientUseCaseFactory} from "../../TestClientUseCaseFactory";
 import {CreateClientRequest} from "../../../../src/client/use-case/create-client/CreateClientRequest";
-import {TestConf} from "../../../conf/TestConf";
+import {ClientUseCaseFactory} from "../../../../src/client/use-case/ClientUseCaseFactory";
+import {AppConf} from "../../../../src/shared/AppConf";
+
+AppConf.switchToTest();
 
 const VALID_FIRST_NAME = 'FIRST NAME';
 const VALID_LAST_NAME = 'LAST NAME';
 const VALID_EMAIL = 'supinfo@supinfo.com';
-const createClientUseCase = TestClientUseCaseFactory.makeCreateClientUseCase();
+const createClientUseCase = ClientUseCaseFactory.makeCreateClientUseCase();
 
 describe('User first name tests', () => {
-    before(() => TestConf.database.clear());
-    afterEach(() => TestConf.database.clear());
+    before(() => AppConf.database.clear());
+    afterEach(() => AppConf.database.clear());
     it('should throw error on create user with empty first name', () => {
-        assert.throw(() => createClientUseCase.createClient({
+        expect(() => createClientUseCase.createClient({
             firstName: '',
             lastName: VALID_LAST_NAME,
             email: VALID_EMAIL
-        }));
+        })).to.throw('The firstname can not be null');
     });
     it('should throw error on create user with undefined first name', () => {
         assert.throw(() => createClientUseCase.createClient({
@@ -36,8 +38,8 @@ describe('User first name tests', () => {
 });
 
 describe('User last name tests', () => {
-    before(() => TestConf.database.clear());
-    afterEach(() => TestConf.database.clear());
+    before(() => AppConf.database.clear());
+    afterEach(() => AppConf.database.clear());
     it('should throw error on create user with empty last name', () => {
         assert.throw(() => createClientUseCase.createClient({
                 firstName: VALID_FIRST_NAME,
@@ -63,8 +65,8 @@ describe('User last name tests', () => {
 });
 
 describe('User email tests', () => {
-    before(() => TestConf.database.clear());
-    afterEach(() => TestConf.database.clear());
+    before(() => AppConf.database.clear());
+    afterEach(() => AppConf.database.clear());
     it('should throw error on create user with empty email.', () => {
         assert.throw(() => createClientUseCase.createClient({
                 firstName: VALID_FIRST_NAME,

@@ -25,6 +25,6 @@ export class InMemoryDataBase implements Database {
     }
 
     clear(): void {
-        InMemoryDataBase.clients = [];
+        throw new Error('Can not clear production database.');
     }
 }
