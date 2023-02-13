@@ -16,3 +16,5 @@ if(process.env.ENV_VARIABLE === 'test') {
     AppConf.switchToTest();
 }
 app.listen();
+
+export default app;

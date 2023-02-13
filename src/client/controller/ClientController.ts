@@ -16,7 +16,11 @@ class ClientController extends Controller {
     }
 
     private createClient = (request: express.Request, response: express.Response) => {
-        response.send(ClientUseCaseFactory.makeCreateClientUseCase().createClient(request.body));
+        try {
+            response.status(200).send(ClientUseCaseFactory.makeCreateClientUseCase().createClient(request.body));
+        } catch (e) {
+            response.status(400).send(e.message);
+        }
     }
     private findAllClients = (request: express.Request, response: express.Response) => {
         response.send(ClientUseCaseFactory.makeFindAllClientsUseCase().findAll());

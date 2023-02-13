@@ -6,7 +6,6 @@ class Client {
     static regexp = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
 
 
-
     constructor(firstName: string, lastName: string, email: string) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -27,25 +26,30 @@ class Client {
     }
 
 
+    get id(): number {
+        return this._id;
+    }
+
     set id(value: number) {
-        if(this._id != undefined) throw new Error('The id is immutable');
+        if (this._id != undefined) throw new Error('The id is immutable');
         this._id = value;
     }
 
     set firstName(value: string) {
-        if(!value || value.length == 0) throw new Error('The firstname can not be null');
+        if (!value || value.length == 0 || value.length > 30) throw new Error('The firstname can not be empty and can not have more than 30 char.');
         this._firstName = value;
     }
 
     set lastName(value: string) {
-        if(!value || value.length == 0) throw new Error('The lastname can not be null');
+        if (!value || value.length == 0) throw new Error('The lastname can not be null');
         this._lastName = value;
     }
 
     set email(value: string) {
-        if(!value || value.length == 0) throw new Error('The email can not be null');
-        if(!Client.regexp.test(value)) throw new Error('The email is not valid.');
+        if (!value || value.length == 0) throw new Error('The email can not be null');
+        if (!Client.regexp.test(value)) throw new Error('The email is not valid.');
         this._email = value;
     }
 }
+
 export default Client;

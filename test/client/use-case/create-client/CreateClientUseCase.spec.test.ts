@@ -19,7 +19,7 @@ describe('User first name tests', () => {
             firstName: '',
             lastName: VALID_LAST_NAME,
             email: VALID_EMAIL
-        })).to.throw('The firstname can not be null');
+        })).to.throw('The firstname can not be empty and can not have more than 30 char.');
     });
     it('should throw error on create user with undefined first name', () => {
         assert.throw(() => createClientUseCase.createClient({
@@ -31,6 +31,13 @@ describe('User first name tests', () => {
     it('should throw error on create user with null first name', () => {
         assert.throw(() => createClientUseCase.createClient({
             firstName: null,
+            lastName: VALID_LAST_NAME,
+            email: VALID_EMAIL
+        }));
+    });
+    it('should throw error on create user with first name length > 30', () => {
+        assert.throw(() => createClientUseCase.createClient({
+            firstName: 'Tooooooooooooooooooooo long firstname',
             lastName: VALID_LAST_NAME,
             email: VALID_EMAIL
         }));

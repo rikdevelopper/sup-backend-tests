@@ -1,0 +1,8 @@
+1- Taux de conversion direct entre les différentes devises
+2- Pouvoir additionner deux devises différentes
+3- Pouvoir convertir une devise en une autre
+4- Pouvoir comparer deux devises différentes
+
+
+--Idée 1 -> use case d'enregistrement des taux d'échange
+--Idée 2 -> partir d'un fichier contenant les currencies.

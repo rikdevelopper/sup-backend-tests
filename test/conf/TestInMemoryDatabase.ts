@@ -11,7 +11,7 @@ export class TestInMemoryDatabase implements Database {
     }
 
     findClientById(id: number): Client {
-        throw new Error("Method not implemented.");
+        return TestInMemoryDatabase.clients.find(value => value.id === id);
     }
 
     findAllClients(): Client[] {
