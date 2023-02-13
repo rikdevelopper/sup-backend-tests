@@ -12,7 +12,7 @@ const VALID_EMAIL = 'supinfo@supinfo.com';
 const createClientUseCase = ClientUseCaseFactory.makeCreateClientUseCase();
 
 describe('User first name tests', () => {
-    before(() => AppConf.database.clear());
+    beforeEach(() => AppConf.database.clear());
     afterEach(() => AppConf.database.clear());
     it('should throw error on create user with empty first name', () => {
         expect(() => createClientUseCase.createClient({
@@ -45,7 +45,7 @@ describe('User first name tests', () => {
 });
 
 describe('User last name tests', () => {
-    before(() => AppConf.database.clear());
+    beforeEach(() => AppConf.database.clear());
     afterEach(() => AppConf.database.clear());
     it('should throw error on create user with empty last name', () => {
         assert.throw(() => createClientUseCase.createClient({
@@ -72,7 +72,7 @@ describe('User last name tests', () => {
 });
 
 describe('User email tests', () => {
-    before(() => AppConf.database.clear());
+    beforeEach(() => AppConf.database.clear());
     afterEach(() => AppConf.database.clear());
     it('should throw error on create user with empty email.', () => {
         assert.throw(() => createClientUseCase.createClient({
