@@ -1,4 +1,5 @@
 import Client from "./client/domain/Client";
+import {User} from "./hotel/user/domain/User";
 
 export interface Database {
     insertClient(client: Client): Client;
@@ -8,4 +9,6 @@ export interface Database {
     findAllClients(): Client[];
 
     clear(): void;
+
+    insertUser(user: User): User;
 }

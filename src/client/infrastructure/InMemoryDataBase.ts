@@ -1,5 +1,6 @@
 import Client from "../domain/Client";
 import {Database} from "../../Database";
+import {User} from "../../hotel/user/domain/User";
 
 export class InMemoryDataBase implements Database {
     static clients: Client[] = [];
@@ -26,5 +27,9 @@ export class InMemoryDataBase implements Database {
 
     clear(): void {
         throw new Error('Can not clear production database.');
+    }
+
+    insertUser(user: User): User {
+        return undefined;
     }
 }

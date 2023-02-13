@@ -1,8 +1,10 @@
 import {Database} from "../../src/Database";
 import Client from "../../src/client/domain/Client";
+import {User} from "../../src/hotel/user/domain/User";
 
 export class TestInMemoryDatabase implements Database {
     static clients: Client[] = [];
+    static users: User[] = [];
     static idCount: number = 1;
 
     static SINGLETON: TestInMemoryDatabase = new TestInMemoryDatabase();
@@ -26,6 +28,11 @@ export class TestInMemoryDatabase implements Database {
 
     clear(): void {
         TestInMemoryDatabase.clients = [];
+    }
+
+    insertUser(user:User): User {
+        user.id = TestInMemoryDatabase.idCount++;
+        return undefined;
     }
 
 }
