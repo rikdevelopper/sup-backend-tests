@@ -12,7 +12,7 @@ export class FindByIdUseCaseImpl implements FindByIdUseCase{
     searchById(id: number): ClientResponse {
         const client: Client = this.clientRepository.findById(id);
         return {
-            firstName: client.firstName,
+            firstName: client.firstName + 'EEEE',
             email: client.email,
             lastName: client.lastName
         } as ClientResponse;
